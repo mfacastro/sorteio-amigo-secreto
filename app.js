@@ -1,4 +1,3 @@
-//O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 // Array para armazenar os nomes
 let amigos = [];
 
@@ -6,12 +5,14 @@ let amigos = [];
 function adicionarAmigo() {
     const input = document.getElementById('amigo');
     const nome = input.value.trim();
+    const botaoReiniciar = document.getElementById('reiniciar');
 
     if (nome !== '') {
         amigos.push(nome);
         atualizarLista();
         input.value = ''; // Limpa o campo
         input.focus(); // Mantém o foco no input
+        botaoReiniciar.disabled = false; // Habilita o botão "Reiniciar" ao adicionar o primeiro nome
     }
 }
 
@@ -39,6 +40,19 @@ function sortearAmigo() {
     const indiceSorteado = Math.floor(Math.random() * amigos.length);
     const amigoSorteado = amigos[indiceSorteado];
     resultado.textContent = `Amigo sorteado: ${amigoSorteado}`;
+}
+
+// Função para reiniciar o sorteio
+function reiniciarSorteio() {
+    const botaoReiniciar = document.getElementById('reiniciar');
+    const lista = document.getElementById('listaAmigos');
+    const resultado = document.getElementById('resultado');
+    
+    amigos = []; // Limpa o array
+    lista.innerHTML = ''; // Limpa a lista visual
+    resultado.textContent = ''; // Limpa o resultado
+    botaoReiniciar.disabled = true; // Desabilita o botão novamente
+    document.getElementById('amigo').focus(); // Volta o foco para o input
 }
 
 // Adicionar amigo ao pressionar Enter
